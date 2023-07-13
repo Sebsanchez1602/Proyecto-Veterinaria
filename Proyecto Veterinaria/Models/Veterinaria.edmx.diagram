@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6ee5b699da2a4c4d9bdd22f547ec425b" Name="Diagram1">
+        <EntityTypeShape EntityType="VeterinariaModel.Citas" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeterinariaModel.Cotizaciones" Width="1.5" PointX="5.25" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeterinariaModel.Dueno" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeterinariaModel.HistorialMedico" Width="1.5" PointX="5.25" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeterinariaModel.InventarioMedicamentos" Width="1.5" PointX="10" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeterinariaModel.Mascotas" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeterinariaModel.Medicamentos" Width="1.5" PointX="7.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeterinariaModel.Medicos" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeterinariaModel.RecetasMedicas" Width="1.5" PointX="5.25" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeterinariaModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeterinariaModel.Usuarios" Width="1.5" PointX="9.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VeterinariaModel.Ventas" Width="1.5" PointX="10" PointY="4" IsExpanded="true" />
+        <AssociationConnector Association="VeterinariaModel.FK__Citas__MascotaID__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="VeterinariaModel.FK__Citas__MedicoID__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="VeterinariaModel.FK__Cotizacio__Masco__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="VeterinariaModel.FK__Mascotas__Propie__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="VeterinariaModel.FK__Historial__Masco__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="VeterinariaModel.FK__Inventari__Medic__5535A963" ManuallyRouted="false" />
+        <AssociationConnector Association="VeterinariaModel.FK__RecetasMe__Masco__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="VeterinariaModel.FK__Ventas__Medicame__4CA06362" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,741 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="VeterinariaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Citas">
+          <Key>
+            <PropertyRef Name="CitaID" />
+          </Key>
+          <Property Name="CitaID" Type="int" Nullable="false" />
+          <Property Name="Fecha" Type="date" />
+          <Property Name="Hora" Type="time" Precision="7" />
+          <Property Name="MedicoID" Type="int" />
+          <Property Name="MascotaID" Type="int" />
+          <Property Name="Observaciones" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Cotizaciones">
+          <Key>
+            <PropertyRef Name="CotizacionID" />
+          </Key>
+          <Property Name="CotizacionID" Type="int" Nullable="false" />
+          <Property Name="Servicio" Type="varchar" MaxLength="200" />
+          <Property Name="CostoEstimado" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Observaciones" Type="varchar" MaxLength="200" />
+          <Property Name="MascotaID" Type="int" />
+        </EntityType>
+        <EntityType Name="Dueno">
+          <Key>
+            <PropertyRef Name="PropietarioID" />
+          </Key>
+          <Property Name="PropietarioID" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="Apellido" Type="varchar" MaxLength="50" />
+          <Property Name="Direccion" Type="varchar" MaxLength="100" />
+          <Property Name="Telefono" Type="varchar" MaxLength="20" />
+          <Property Name="CorreoElectronico" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="HistorialMedico">
+          <Key>
+            <PropertyRef Name="HistorialID" />
+          </Key>
+          <Property Name="HistorialID" Type="int" Nullable="false" />
+          <Property Name="MascotaID" Type="int" />
+          <Property Name="Fecha" Type="date" />
+          <Property Name="Diagnostico" Type="varchar" MaxLength="200" />
+          <Property Name="Procedimiento" Type="varchar" MaxLength="200" />
+          <Property Name="Resultado" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="InventarioMedicamentos">
+          <Key>
+            <PropertyRef Name="InventarioID" />
+          </Key>
+          <Property Name="InventarioID" Type="int" Nullable="false" />
+          <Property Name="MedicamentoID" Type="int" />
+          <Property Name="Cantidad" Type="int" />
+          <Property Name="PrecioUnitario" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="FechaVencimiento" Type="date" />
+        </EntityType>
+        <EntityType Name="Mascotas">
+          <Key>
+            <PropertyRef Name="MascotaID" />
+          </Key>
+          <Property Name="MascotaID" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="Especie" Type="varchar" MaxLength="50" />
+          <Property Name="Raza" Type="varchar" MaxLength="50" />
+          <Property Name="Edad" Type="int" />
+          <Property Name="Genero" Type="varchar" MaxLength="10" />
+          <Property Name="PropietarioID" Type="int" />
+        </EntityType>
+        <EntityType Name="Medicamentos">
+          <Key>
+            <PropertyRef Name="MedicamentoID" />
+          </Key>
+          <Property Name="MedicamentoID" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="200" />
+          <Property Name="DosisRecomendada" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Medicos">
+          <Key>
+            <PropertyRef Name="MedicoID" />
+          </Key>
+          <Property Name="MedicoID" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="Apellido" Type="varchar" MaxLength="50" />
+          <Property Name="Especialidad" Type="varchar" MaxLength="50" />
+          <Property Name="Telefono" Type="varchar" MaxLength="20" />
+          <Property Name="CorreoElectronico" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="RecetasMedicas">
+          <Key>
+            <PropertyRef Name="RecetaID" />
+          </Key>
+          <Property Name="RecetaID" Type="int" Nullable="false" />
+          <Property Name="MascotaID" Type="int" />
+          <Property Name="Fecha" Type="date" />
+          <Property Name="Medicamento" Type="varchar" MaxLength="100" />
+          <Property Name="Dosis" Type="varchar" MaxLength="50" />
+          <Property Name="Duracion" Type="varchar" MaxLength="50" />
+          <Property Name="Instrucciones" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="UsuarioID" />
+          </Key>
+          <Property Name="UsuarioID" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="Apellido" Type="varchar" MaxLength="50" />
+          <Property Name="Direccion" Type="varchar" MaxLength="100" />
+          <Property Name="CorreoElectronico" Type="varchar" MaxLength="100" />
+          <Property Name="NombreUsuario" Type="varchar" MaxLength="50" />
+          <Property Name="Contrasena" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Ventas">
+          <Key>
+            <PropertyRef Name="VentaID" />
+          </Key>
+          <Property Name="VentaID" Type="int" Nullable="false" />
+          <Property Name="Fecha" Type="date" />
+          <Property Name="MedicamentoID" Type="int" />
+          <Property Name="Cantidad" Type="int" />
+          <Property Name="Precio" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <Association Name="FK__Citas__MascotaID__44FF419A">
+          <End Role="Mascotas" Type="Self.Mascotas" Multiplicity="0..1" />
+          <End Role="Citas" Type="Self.Citas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mascotas">
+              <PropertyRef Name="MascotaID" />
+            </Principal>
+            <Dependent Role="Citas">
+              <PropertyRef Name="MascotaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Citas__MedicoID__440B1D61">
+          <End Role="Medicos" Type="Self.Medicos" Multiplicity="0..1" />
+          <End Role="Citas" Type="Self.Citas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medicos">
+              <PropertyRef Name="MedicoID" />
+            </Principal>
+            <Dependent Role="Citas">
+              <PropertyRef Name="MedicoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cotizacio__Masco__52593CB8">
+          <End Role="Mascotas" Type="Self.Mascotas" Multiplicity="0..1" />
+          <End Role="Cotizaciones" Type="Self.Cotizaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mascotas">
+              <PropertyRef Name="MascotaID" />
+            </Principal>
+            <Dependent Role="Cotizaciones">
+              <PropertyRef Name="MascotaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Historial__Masco__4F7CD00D">
+          <End Role="Mascotas" Type="Self.Mascotas" Multiplicity="0..1" />
+          <End Role="HistorialMedico" Type="Self.HistorialMedico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mascotas">
+              <PropertyRef Name="MascotaID" />
+            </Principal>
+            <Dependent Role="HistorialMedico">
+              <PropertyRef Name="MascotaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Inventari__Medic__5535A963">
+          <End Role="Medicamentos" Type="Self.Medicamentos" Multiplicity="0..1" />
+          <End Role="InventarioMedicamentos" Type="Self.InventarioMedicamentos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medicamentos">
+              <PropertyRef Name="MedicamentoID" />
+            </Principal>
+            <Dependent Role="InventarioMedicamentos">
+              <PropertyRef Name="MedicamentoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Mascotas__Propie__3F466844">
+          <End Role="Dueno" Type="Self.Dueno" Multiplicity="0..1" />
+          <End Role="Mascotas" Type="Self.Mascotas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dueno">
+              <PropertyRef Name="PropietarioID" />
+            </Principal>
+            <Dependent Role="Mascotas">
+              <PropertyRef Name="PropietarioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RecetasMe__Masco__47DBAE45">
+          <End Role="Mascotas" Type="Self.Mascotas" Multiplicity="0..1" />
+          <End Role="RecetasMedicas" Type="Self.RecetasMedicas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mascotas">
+              <PropertyRef Name="MascotaID" />
+            </Principal>
+            <Dependent Role="RecetasMedicas">
+              <PropertyRef Name="MascotaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ventas__Medicame__4CA06362">
+          <End Role="Medicamentos" Type="Self.Medicamentos" Multiplicity="0..1" />
+          <End Role="Ventas" Type="Self.Ventas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medicamentos">
+              <PropertyRef Name="MedicamentoID" />
+            </Principal>
+            <Dependent Role="Ventas">
+              <PropertyRef Name="MedicamentoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="VeterinariaModelStoreContainer">
+          <EntitySet Name="Citas" EntityType="Self.Citas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cotizaciones" EntityType="Self.Cotizaciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dueno" EntityType="Self.Dueno" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HistorialMedico" EntityType="Self.HistorialMedico" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InventarioMedicamentos" EntityType="Self.InventarioMedicamentos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mascotas" EntityType="Self.Mascotas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Medicamentos" EntityType="Self.Medicamentos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Medicos" EntityType="Self.Medicos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RecetasMedicas" EntityType="Self.RecetasMedicas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ventas" EntityType="Self.Ventas" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Citas__MascotaID__44FF419A" Association="Self.FK__Citas__MascotaID__44FF419A">
+            <End Role="Mascotas" EntitySet="Mascotas" />
+            <End Role="Citas" EntitySet="Citas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Citas__MedicoID__440B1D61" Association="Self.FK__Citas__MedicoID__440B1D61">
+            <End Role="Medicos" EntitySet="Medicos" />
+            <End Role="Citas" EntitySet="Citas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cotizacio__Masco__52593CB8" Association="Self.FK__Cotizacio__Masco__52593CB8">
+            <End Role="Mascotas" EntitySet="Mascotas" />
+            <End Role="Cotizaciones" EntitySet="Cotizaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Historial__Masco__4F7CD00D" Association="Self.FK__Historial__Masco__4F7CD00D">
+            <End Role="Mascotas" EntitySet="Mascotas" />
+            <End Role="HistorialMedico" EntitySet="HistorialMedico" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Inventari__Medic__5535A963" Association="Self.FK__Inventari__Medic__5535A963">
+            <End Role="Medicamentos" EntitySet="Medicamentos" />
+            <End Role="InventarioMedicamentos" EntitySet="InventarioMedicamentos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Mascotas__Propie__3F466844" Association="Self.FK__Mascotas__Propie__3F466844">
+            <End Role="Dueno" EntitySet="Dueno" />
+            <End Role="Mascotas" EntitySet="Mascotas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RecetasMe__Masco__47DBAE45" Association="Self.FK__RecetasMe__Masco__47DBAE45">
+            <End Role="Mascotas" EntitySet="Mascotas" />
+            <End Role="RecetasMedicas" EntitySet="RecetasMedicas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ventas__Medicame__4CA06362" Association="Self.FK__Ventas__Medicame__4CA06362">
+            <End Role="Medicamentos" EntitySet="Medicamentos" />
+            <End Role="Ventas" EntitySet="Ventas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="VeterinariaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Citas">
+          <Key>
+            <PropertyRef Name="CitaID" />
+          </Key>
+          <Property Name="CitaID" Type="Int32" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Precision="0" />
+          <Property Name="Hora" Type="Time" Precision="7" />
+          <Property Name="MedicoID" Type="Int32" />
+          <Property Name="MascotaID" Type="Int32" />
+          <Property Name="Observaciones" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Mascotas" Relationship="Self.FK__Citas__MascotaID__44FF419A" FromRole="Citas" ToRole="Mascotas" />
+          <NavigationProperty Name="Medicos" Relationship="Self.FK__Citas__MedicoID__440B1D61" FromRole="Citas" ToRole="Medicos" />
+        </EntityType>
+        <EntityType Name="Cotizaciones">
+          <Key>
+            <PropertyRef Name="CotizacionID" />
+          </Key>
+          <Property Name="CotizacionID" Type="Int32" Nullable="false" />
+          <Property Name="Servicio" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CostoEstimado" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Observaciones" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="MascotaID" Type="Int32" />
+          <NavigationProperty Name="Mascotas" Relationship="Self.FK__Cotizacio__Masco__52593CB8" FromRole="Cotizaciones" ToRole="Mascotas" />
+        </EntityType>
+        <EntityType Name="Dueno">
+          <Key>
+            <PropertyRef Name="PropietarioID" />
+          </Key>
+          <Property Name="PropietarioID" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CorreoElectronico" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Mascotas" Relationship="Self.FK__Mascotas__Propie__3F466844" FromRole="Dueno" ToRole="Mascotas" />
+        </EntityType>
+        <EntityType Name="HistorialMedico">
+          <Key>
+            <PropertyRef Name="HistorialID" />
+          </Key>
+          <Property Name="HistorialID" Type="Int32" Nullable="false" />
+          <Property Name="MascotaID" Type="Int32" />
+          <Property Name="Fecha" Type="DateTime" Precision="0" />
+          <Property Name="Diagnostico" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Procedimiento" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Resultado" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Mascotas" Relationship="Self.FK__Historial__Masco__4F7CD00D" FromRole="HistorialMedico" ToRole="Mascotas" />
+        </EntityType>
+        <EntityType Name="InventarioMedicamentos">
+          <Key>
+            <PropertyRef Name="InventarioID" />
+          </Key>
+          <Property Name="InventarioID" Type="Int32" Nullable="false" />
+          <Property Name="MedicamentoID" Type="Int32" />
+          <Property Name="Cantidad" Type="Int32" />
+          <Property Name="PrecioUnitario" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="FechaVencimiento" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Medicamentos" Relationship="Self.FK__Inventari__Medic__5535A963" FromRole="InventarioMedicamentos" ToRole="Medicamentos" />
+        </EntityType>
+        <EntityType Name="Mascotas">
+          <Key>
+            <PropertyRef Name="MascotaID" />
+          </Key>
+          <Property Name="MascotaID" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Especie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Raza" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Edad" Type="Int32" />
+          <Property Name="Genero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PropietarioID" Type="Int32" />
+          <NavigationProperty Name="Citas" Relationship="Self.FK__Citas__MascotaID__44FF419A" FromRole="Mascotas" ToRole="Citas" />
+          <NavigationProperty Name="Cotizaciones" Relationship="Self.FK__Cotizacio__Masco__52593CB8" FromRole="Mascotas" ToRole="Cotizaciones" />
+          <NavigationProperty Name="Dueno" Relationship="Self.FK__Mascotas__Propie__3F466844" FromRole="Mascotas" ToRole="Dueno" />
+          <NavigationProperty Name="HistorialMedico" Relationship="Self.FK__Historial__Masco__4F7CD00D" FromRole="Mascotas" ToRole="HistorialMedico" />
+          <NavigationProperty Name="RecetasMedicas" Relationship="Self.FK__RecetasMe__Masco__47DBAE45" FromRole="Mascotas" ToRole="RecetasMedicas" />
+        </EntityType>
+        <EntityType Name="Medicamentos">
+          <Key>
+            <PropertyRef Name="MedicamentoID" />
+          </Key>
+          <Property Name="MedicamentoID" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="DosisRecomendada" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="InventarioMedicamentos" Relationship="Self.FK__Inventari__Medic__5535A963" FromRole="Medicamentos" ToRole="InventarioMedicamentos" />
+          <NavigationProperty Name="Ventas" Relationship="Self.FK__Ventas__Medicame__4CA06362" FromRole="Medicamentos" ToRole="Ventas" />
+        </EntityType>
+        <EntityType Name="Medicos">
+          <Key>
+            <PropertyRef Name="MedicoID" />
+          </Key>
+          <Property Name="MedicoID" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Especialidad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CorreoElectronico" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Citas" Relationship="Self.FK__Citas__MedicoID__440B1D61" FromRole="Medicos" ToRole="Citas" />
+        </EntityType>
+        <EntityType Name="RecetasMedicas">
+          <Key>
+            <PropertyRef Name="RecetaID" />
+          </Key>
+          <Property Name="RecetaID" Type="Int32" Nullable="false" />
+          <Property Name="MascotaID" Type="Int32" />
+          <Property Name="Fecha" Type="DateTime" Precision="0" />
+          <Property Name="Medicamento" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Dosis" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Duracion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Instrucciones" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Mascotas" Relationship="Self.FK__RecetasMe__Masco__47DBAE45" FromRole="RecetasMedicas" ToRole="Mascotas" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="UsuarioID" />
+          </Key>
+          <Property Name="UsuarioID" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CorreoElectronico" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="NombreUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Contrasena" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Ventas">
+          <Key>
+            <PropertyRef Name="VentaID" />
+          </Key>
+          <Property Name="VentaID" Type="Int32" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Precision="0" />
+          <Property Name="MedicamentoID" Type="Int32" />
+          <Property Name="Cantidad" Type="Int32" />
+          <Property Name="Precio" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="Medicamentos" Relationship="Self.FK__Ventas__Medicame__4CA06362" FromRole="Ventas" ToRole="Medicamentos" />
+        </EntityType>
+        <Association Name="FK__Citas__MascotaID__44FF419A">
+          <End Role="Mascotas" Type="Self.Mascotas" Multiplicity="0..1" />
+          <End Role="Citas" Type="Self.Citas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mascotas">
+              <PropertyRef Name="MascotaID" />
+            </Principal>
+            <Dependent Role="Citas">
+              <PropertyRef Name="MascotaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Citas__MedicoID__440B1D61">
+          <End Role="Medicos" Type="Self.Medicos" Multiplicity="0..1" />
+          <End Role="Citas" Type="Self.Citas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medicos">
+              <PropertyRef Name="MedicoID" />
+            </Principal>
+            <Dependent Role="Citas">
+              <PropertyRef Name="MedicoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cotizacio__Masco__52593CB8">
+          <End Role="Mascotas" Type="Self.Mascotas" Multiplicity="0..1" />
+          <End Role="Cotizaciones" Type="Self.Cotizaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mascotas">
+              <PropertyRef Name="MascotaID" />
+            </Principal>
+            <Dependent Role="Cotizaciones">
+              <PropertyRef Name="MascotaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Mascotas__Propie__3F466844">
+          <End Role="Dueno" Type="Self.Dueno" Multiplicity="0..1" />
+          <End Role="Mascotas" Type="Self.Mascotas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dueno">
+              <PropertyRef Name="PropietarioID" />
+            </Principal>
+            <Dependent Role="Mascotas">
+              <PropertyRef Name="PropietarioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Historial__Masco__4F7CD00D">
+          <End Role="Mascotas" Type="Self.Mascotas" Multiplicity="0..1" />
+          <End Role="HistorialMedico" Type="Self.HistorialMedico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mascotas">
+              <PropertyRef Name="MascotaID" />
+            </Principal>
+            <Dependent Role="HistorialMedico">
+              <PropertyRef Name="MascotaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Inventari__Medic__5535A963">
+          <End Role="Medicamentos" Type="Self.Medicamentos" Multiplicity="0..1" />
+          <End Role="InventarioMedicamentos" Type="Self.InventarioMedicamentos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medicamentos">
+              <PropertyRef Name="MedicamentoID" />
+            </Principal>
+            <Dependent Role="InventarioMedicamentos">
+              <PropertyRef Name="MedicamentoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RecetasMe__Masco__47DBAE45">
+          <End Role="Mascotas" Type="Self.Mascotas" Multiplicity="0..1" />
+          <End Role="RecetasMedicas" Type="Self.RecetasMedicas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mascotas">
+              <PropertyRef Name="MascotaID" />
+            </Principal>
+            <Dependent Role="RecetasMedicas">
+              <PropertyRef Name="MascotaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ventas__Medicame__4CA06362">
+          <End Role="Medicamentos" Type="Self.Medicamentos" Multiplicity="0..1" />
+          <End Role="Ventas" Type="Self.Ventas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medicamentos">
+              <PropertyRef Name="MedicamentoID" />
+            </Principal>
+            <Dependent Role="Ventas">
+              <PropertyRef Name="MedicamentoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="VeterinariaEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Citas" EntityType="Self.Citas" />
+          <EntitySet Name="Cotizaciones" EntityType="Self.Cotizaciones" />
+          <EntitySet Name="Dueno" EntityType="Self.Dueno" />
+          <EntitySet Name="HistorialMedico" EntityType="Self.HistorialMedico" />
+          <EntitySet Name="InventarioMedicamentos" EntityType="Self.InventarioMedicamentos" />
+          <EntitySet Name="Mascotas" EntityType="Self.Mascotas" />
+          <EntitySet Name="Medicamentos" EntityType="Self.Medicamentos" />
+          <EntitySet Name="Medicos" EntityType="Self.Medicos" />
+          <EntitySet Name="RecetasMedicas" EntityType="Self.RecetasMedicas" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+          <EntitySet Name="Ventas" EntityType="Self.Ventas" />
+          <AssociationSet Name="FK__Citas__MascotaID__44FF419A" Association="Self.FK__Citas__MascotaID__44FF419A">
+            <End Role="Mascotas" EntitySet="Mascotas" />
+            <End Role="Citas" EntitySet="Citas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Citas__MedicoID__440B1D61" Association="Self.FK__Citas__MedicoID__440B1D61">
+            <End Role="Medicos" EntitySet="Medicos" />
+            <End Role="Citas" EntitySet="Citas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cotizacio__Masco__52593CB8" Association="Self.FK__Cotizacio__Masco__52593CB8">
+            <End Role="Mascotas" EntitySet="Mascotas" />
+            <End Role="Cotizaciones" EntitySet="Cotizaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Mascotas__Propie__3F466844" Association="Self.FK__Mascotas__Propie__3F466844">
+            <End Role="Dueno" EntitySet="Dueno" />
+            <End Role="Mascotas" EntitySet="Mascotas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Historial__Masco__4F7CD00D" Association="Self.FK__Historial__Masco__4F7CD00D">
+            <End Role="Mascotas" EntitySet="Mascotas" />
+            <End Role="HistorialMedico" EntitySet="HistorialMedico" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Inventari__Medic__5535A963" Association="Self.FK__Inventari__Medic__5535A963">
+            <End Role="Medicamentos" EntitySet="Medicamentos" />
+            <End Role="InventarioMedicamentos" EntitySet="InventarioMedicamentos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RecetasMe__Masco__47DBAE45" Association="Self.FK__RecetasMe__Masco__47DBAE45">
+            <End Role="Mascotas" EntitySet="Mascotas" />
+            <End Role="RecetasMedicas" EntitySet="RecetasMedicas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ventas__Medicame__4CA06362" Association="Self.FK__Ventas__Medicame__4CA06362">
+            <End Role="Medicamentos" EntitySet="Medicamentos" />
+            <End Role="Ventas" EntitySet="Ventas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="VeterinariaModelStoreContainer" CdmEntityContainer="VeterinariaEntities1">
+          <EntitySetMapping Name="Citas">
+            <EntityTypeMapping TypeName="VeterinariaModel.Citas">
+              <MappingFragment StoreEntitySet="Citas">
+                <ScalarProperty Name="CitaID" ColumnName="CitaID" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Hora" ColumnName="Hora" />
+                <ScalarProperty Name="MedicoID" ColumnName="MedicoID" />
+                <ScalarProperty Name="MascotaID" ColumnName="MascotaID" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cotizaciones">
+            <EntityTypeMapping TypeName="VeterinariaModel.Cotizaciones">
+              <MappingFragment StoreEntitySet="Cotizaciones">
+                <ScalarProperty Name="CotizacionID" ColumnName="CotizacionID" />
+                <ScalarProperty Name="Servicio" ColumnName="Servicio" />
+                <ScalarProperty Name="CostoEstimado" ColumnName="CostoEstimado" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="MascotaID" ColumnName="MascotaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dueno">
+            <EntityTypeMapping TypeName="VeterinariaModel.Dueno">
+              <MappingFragment StoreEntitySet="Dueno">
+                <ScalarProperty Name="PropietarioID" ColumnName="PropietarioID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HistorialMedico">
+            <EntityTypeMapping TypeName="VeterinariaModel.HistorialMedico">
+              <MappingFragment StoreEntitySet="HistorialMedico">
+                <ScalarProperty Name="HistorialID" ColumnName="HistorialID" />
+                <ScalarProperty Name="MascotaID" ColumnName="MascotaID" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Diagnostico" ColumnName="Diagnostico" />
+                <ScalarProperty Name="Procedimiento" ColumnName="Procedimiento" />
+                <ScalarProperty Name="Resultado" ColumnName="Resultado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InventarioMedicamentos">
+            <EntityTypeMapping TypeName="VeterinariaModel.InventarioMedicamentos">
+              <MappingFragment StoreEntitySet="InventarioMedicamentos">
+                <ScalarProperty Name="InventarioID" ColumnName="InventarioID" />
+                <ScalarProperty Name="MedicamentoID" ColumnName="MedicamentoID" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="PrecioUnitario" ColumnName="PrecioUnitario" />
+                <ScalarProperty Name="FechaVencimiento" ColumnName="FechaVencimiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mascotas">
+            <EntityTypeMapping TypeName="VeterinariaModel.Mascotas">
+              <MappingFragment StoreEntitySet="Mascotas">
+                <ScalarProperty Name="MascotaID" ColumnName="MascotaID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Especie" ColumnName="Especie" />
+                <ScalarProperty Name="Raza" ColumnName="Raza" />
+                <ScalarProperty Name="Edad" ColumnName="Edad" />
+                <ScalarProperty Name="Genero" ColumnName="Genero" />
+                <ScalarProperty Name="PropietarioID" ColumnName="PropietarioID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Medicamentos">
+            <EntityTypeMapping TypeName="VeterinariaModel.Medicamentos">
+              <MappingFragment StoreEntitySet="Medicamentos">
+                <ScalarProperty Name="MedicamentoID" ColumnName="MedicamentoID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="DosisRecomendada" ColumnName="DosisRecomendada" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Medicos">
+            <EntityTypeMapping TypeName="VeterinariaModel.Medicos">
+              <MappingFragment StoreEntitySet="Medicos">
+                <ScalarProperty Name="MedicoID" ColumnName="MedicoID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Especialidad" ColumnName="Especialidad" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RecetasMedicas">
+            <EntityTypeMapping TypeName="VeterinariaModel.RecetasMedicas">
+              <MappingFragment StoreEntitySet="RecetasMedicas">
+                <ScalarProperty Name="RecetaID" ColumnName="RecetaID" />
+                <ScalarProperty Name="MascotaID" ColumnName="MascotaID" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Medicamento" ColumnName="Medicamento" />
+                <ScalarProperty Name="Dosis" ColumnName="Dosis" />
+                <ScalarProperty Name="Duracion" ColumnName="Duracion" />
+                <ScalarProperty Name="Instrucciones" ColumnName="Instrucciones" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="VeterinariaModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="VeterinariaModel.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+                <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
+                <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ventas">
+            <EntityTypeMapping TypeName="VeterinariaModel.Ventas">
+              <MappingFragment StoreEntitySet="Ventas">
+                <ScalarProperty Name="VentaID" ColumnName="VentaID" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="MedicamentoID" ColumnName="MedicamentoID" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

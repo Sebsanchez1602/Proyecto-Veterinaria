@@ -45,10 +45,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -137,6 +145,57 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Citas.cs">
+      <DependentUpon>Veterinaria.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Cotizaciones.cs">
+      <DependentUpon>Veterinaria.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Dueno.cs">
+      <DependentUpon>Veterinaria.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HistorialMedico.cs">
+      <DependentUpon>Veterinaria.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\InventarioMedicamentos.cs">
+      <DependentUpon>Veterinaria.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Mascotas.cs">
+      <DependentUpon>Veterinaria.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Medicamentos.cs">
+      <DependentUpon>Veterinaria.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Medicos.cs">
+      <DependentUpon>Veterinaria.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RecetasMedicas.cs">
+      <DependentUpon>Veterinaria.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>Veterinaria.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Usuarios.cs">
+      <DependentUpon>Veterinaria.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Ventas.cs">
+      <DependentUpon>Veterinaria.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Veterinaria.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Veterinaria.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Veterinaria.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Veterinaria.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Veterinaria.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Veterinaria.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -148,8 +207,25 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\Veterinaria.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Veterinaria.edmx</DependentUpon>
+      <LastGenOutput>Veterinaria.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Veterinaria.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Veterinaria.edmx</DependentUpon>
+      <LastGenOutput>Veterinaria.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\Veterinaria.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Veterinaria.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Veterinaria.edmx.diagram">
+      <DependentUpon>Veterinaria.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -178,7 +254,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -192,6 +267,9 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
