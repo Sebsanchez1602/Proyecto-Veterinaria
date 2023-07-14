@@ -1,35 +1,33 @@
-﻿.container {
-    display: flex;
-    height: 100vh;
-}
-
-.sidebar-wrapper {
-    width: 250px;
+﻿.menu {
     background-color: #333;
+    height: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
-.sidebar ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-    .sidebar ul li {
-        margin: 10px;
+    .menu ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
     }
 
-        .sidebar ul li a {
-            display: block;
-            text-decoration: none;
-            color: #fff;
-            padding: 10px;
-            border-radius: 5px;
+        .menu ul li {
+            display: inline-block;
+            margin-right: 20px;
         }
 
-            .sidebar ul li a:hover {
-                background-color: #555;
+            .menu ul li a {
+                display: block;
+                color: #fff;
+                text-decoration: none;
+                padding: 10px 15px;
             }
 
-.content-wrapper {
-    flex: 1;
+                .menu ul li a:hover {
+                    background-color: #555;
+                }
+
+.content {
     padding: 20px;
 }
